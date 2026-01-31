@@ -2,9 +2,6 @@
   "name": "nuxt-doctor-showcase",
   "private": true,
   "type": "module",
-  "scripts": {
-    "doctor": "nuxi doctor"
-  },
   "devDependencies": {
     "@nuxt/a11y": "https://pkg.pr.new/@nuxt/a11y@210",
     "@nuxt/kit": "^4.3.0",
