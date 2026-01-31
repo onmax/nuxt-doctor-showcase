@@ -10,7 +10,7 @@ Demo project showcasing `nuxt doctor` - a diagnostic command for Nuxt projects.
 git clone https://github.com/onmax/nuxt-doctor-showcase
 cd nuxt-doctor-showcase
 pnpm install
-pnpm doctor
+pnpm exec nuxi doctor
 ```
 
 > **Note:** If `pnpm install` fails, wait for CI to publish via [pkg.pr.new](https://pkg.pr.new/nuxi@1206).
