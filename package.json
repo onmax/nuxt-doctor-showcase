@@ -8,7 +8,7 @@
   "devDependencies": {
     "@nuxt/a11y": "https://pkg.pr.new/@nuxt/a11y@210",
     "@nuxt/kit": "^4.3.0",
-    "nuxi": "https://pkg.pr.new/nuxt/cli/nuxi@1206",
+    "nuxi": "https://pkg.pr.new/nuxi@1206",
     "nuxt": "^4.3.0"
   }
 }
