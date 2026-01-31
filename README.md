@@ -13,7 +13,7 @@ pnpm install
 pnpm doctor
 ```
 
-> **Note:** If `pnpm install` fails, CI hasn't published the nuxi package yet - check [PR #1206](https://github.com/nuxt/cli/pull/1206) status.
+> **Note:** If `pnpm install` fails, wait for CI to publish via [pkg.pr.new](https://pkg.pr.new/nuxi@1206).
 
 ## Output
 
