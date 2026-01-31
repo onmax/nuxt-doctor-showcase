@@ -2,7 +2,7 @@
 
 Demo project showcasing `nuxt doctor` - a diagnostic command for Nuxt projects.
 
-> **Note:** This uses a patched `@nuxt/a11y` module to demonstrate the `doctor:check` hook. The actual PR to add this hook to nuxt/a11y is pending.
+> **Note:** Uses `nuxi` from [nuxt/cli#1206](https://github.com/nuxt/cli/pull/1206) via pkg.pr.new and a patched `@nuxt/a11y` to demonstrate the `doctor:check` hook.
 
 ## Usage
 
@@ -67,5 +67,5 @@ pnpm doctor
 ## Related
 
 - [nuxt/cli#1205](https://github.com/nuxt/cli/issues/1205) - Original issue
-- [nuxt/cli PR](#) - Implementation PR (pending)
+- [nuxt/cli#1206](https://github.com/nuxt/cli/pull/1206) - Implementation PR
 - [nuxt/a11y PR](#) - Add doctor hook to @nuxt/a11y (pending)
