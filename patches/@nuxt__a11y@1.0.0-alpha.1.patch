@@ -1,0 +1,39 @@
+diff --git a/dist/module.mjs b/dist/module.mjs
+index 3183058947f505b303259fcfd5f9cfb9f316f16d..3edb5a55142160999120911fc4b05f9b7edf53b5 100644
+--- a/dist/module.mjs
++++ b/dist/module.mjs
+@@ -188,6 +188,34 @@ const module$1 = defineNuxtModule({
+   }),
+   setup(options, nuxt) {
+     const resolver = createResolver(import.meta.url);
++
++    // Doctor hook - provide a11y diagnostics (demo data for showcase)
++    nuxt.hook('doctor:check', (ctx) => {
++      const mockViolations = [
++        { impact: 'critical', id: 'image-alt', count: 3, desc: 'Images must have alternate text' },
++        { impact: 'serious', id: 'color-contrast', count: 5, desc: 'Elements must have sufficient color contrast' },
++        { impact: 'moderate', id: 'link-name', count: 2, desc: 'Links must have discernible text' },
++      ];
++
++      if (options.report.enabled) {
++        const total = mockViolations.reduce((sum, v) => sum + v.count, 0);
++        const critical = mockViolations.filter(v => v.impact === 'critical').reduce((sum, v) => sum + v.count, 0);
++        const serious = mockViolations.filter(v => v.impact === 'serious').reduce((sum, v) => sum + v.count, 0);
++
++        ctx.addCheck({
++          name: 'A11y',
++          status: critical > 0 ? 'error' : serious > 0 ? 'warning' : 'success',
++          message: `${total} violations (${critical} critical, ${serious} serious)`,
++          source: '@nuxt/a11y',
++          details: mockViolations.map(v => `[${v.impact}] ${v.id}: ${v.desc} (${v.count} elements)`)
++        });
++      } else if (options.enabled) {
++        ctx.addCheck({ name: 'A11y', status: 'success', message: 'dev scanning enabled', source: '@nuxt/a11y' });
++      } else {
++        ctx.addCheck({ name: 'A11y', status: 'warning', message: 'disabled - enable for a11y checks', source: '@nuxt/a11y' });
++      }
++    });
++
+     if (options.enabled || options.report.enabled) {
+       nuxt.options.runtimeConfig.public.axe = options.axe;
+     }

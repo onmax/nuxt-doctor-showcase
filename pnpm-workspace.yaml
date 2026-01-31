@@ -1,0 +1,2 @@
+patchedDependencies:
+  '@nuxt/a11y@1.0.0-alpha.1': patches/@nuxt__a11y@1.0.0-alpha.1.patch
