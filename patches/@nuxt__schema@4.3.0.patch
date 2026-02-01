@@ -1,0 +1,63 @@
+diff --git a/dist/index.d.mts b/dist/index.d.mts
+index d1295f31e996ca7721453b1298705b1ff8755ca3..7bc7e9f2e7ed7e37d01e1bb59fd400a226bd3f15 100644
+--- a/dist/index.d.mts
++++ b/dist/index.d.mts
+@@ -526,6 +526,38 @@ interface NuxtAnalyzeMeta {
+   outDir: string;
+ }
+ /**
++* Diagnostic check result from `nuxi doctor` command.
++*/
++interface DoctorCheck {
++  /** Check name (display) */
++  name: string;
++  /** Check result status */
++  status: 'success' | 'warning' | 'error';
++  /** Short summary message */
++  message: string;
++  /** Programmatic identifier, e.g. "MISSING_PEER_DEP" */
++  id?: string;
++  /** Module name that contributed this check, e.g. "@nuxt/ui" */
++  source?: string;
++  /** Extra context or list of issues */
++  details?: string | string[];
++  /** How to fix the issue */
++  suggestion?: string;
++  /** Documentation or reference link */
++  url?: string;
++  /** Arbitrary metadata for programmatic consumption */
++  data?: Record<string, unknown>;
++}
++/**
++* Context provided to the `doctor:check` hook.
++*/
++interface DoctorCheckContext {
++  /** Add a diagnostic check result */
++  addCheck: (check: DoctorCheck) => void;
++  /** The Nuxt instance */
++  nuxt: Nuxt;
++}
++/**
+ * The listeners to Nuxt build time events
+ */
+ interface NuxtHooks {
+@@ -701,6 +733,12 @@ interface NuxtHooks {
+   */
+   "build:error": (error: Error) => HookResult;
+   /**
++  * Called when running `nuxi doctor` to collect diagnostic checks from modules.
++  * @param ctx Context with `addCheck` function and `nuxt` instance
++  * @returns Promise
++  */
++  "doctor:check": (ctx: DoctorCheckContext) => HookResult;
++  /**
+   * Called before @nuxt/cli writes `.nuxt/tsconfig.json` and `.nuxt/nuxt.d.ts`, allowing addition of custom references and declarations in `nuxt.d.ts`, or directly modifying the options in `tsconfig.json`
+   * @param options Objects containing `references`, `declarations`, `tsConfig`
+   * @returns Promise
+@@ -2894,4 +2932,4 @@ interface AppConfig {
+ //#region src/config/index.d.ts
+ declare const _default: InputObject;
+ //#endregion
+-export { type AppConfig, type AppConfigInput, type AppHeadMetaObject, type Component, type ComponentMeta, type ComponentsDir, type ComponentsOptions, type ConfigSchema, type CustomAppConfig, type GenerateAppOptions, type HookResult, type ImportPresetWithDeprecation, type ImportsOptions, type KeyedFunction, type MetaObject, type MetaObjectRaw, type ModuleDefinition, type ModuleDependencies, type ModuleDependencyMeta, type ModuleMeta, type ModuleOptions, type ModuleSetupInstallResult, type ModuleSetupReturn, type Nuxt, type NuxtAnalyzeMeta, type NuxtApp, type NuxtAppConfig, type NuxtBuilder, type NuxtCompatibility, type NuxtCompatibilityIssue, type NuxtCompatibilityIssues, type NuxtConfig, type NuxtConfigLayer, _default as NuxtConfigSchema, type NuxtDebugContext, type NuxtDebugModuleMutationRecord, type NuxtDebugOptions, type NuxtHookName, type NuxtHooks, type NuxtLayout, type NuxtMiddleware, type NuxtModule, type NuxtOptions, type NuxtPage, type NuxtPlugin, type NuxtPluginTemplate, type NuxtServerTemplate, type NuxtTemplate, type NuxtTypeTemplate, type PublicRuntimeConfig, type ResolvedModuleOptions, type ResolvedNuxtTemplate, type RouterConfig, type RouterConfigSerializable, type RouterOptions, type RuntimeConfig, type RuntimeValue, type ScanDir, type SchemaDefinition, type TSReference, type UpperSnakeCase, type ViteConfig, type ViteOptions, type VueTSConfig, type WatchEvent };
+\ No newline at end of file
++export { type AppConfig, type AppConfigInput, type AppHeadMetaObject, type Component, type ComponentMeta, type ComponentsDir, type ComponentsOptions, type ConfigSchema, type CustomAppConfig, type DoctorCheck, type DoctorCheckContext, type GenerateAppOptions, type HookResult, type ImportPresetWithDeprecation, type ImportsOptions, type KeyedFunction, type MetaObject, type MetaObjectRaw, type ModuleDefinition, type ModuleDependencies, type ModuleDependencyMeta, type ModuleMeta, type ModuleOptions, type ModuleSetupInstallResult, type ModuleSetupReturn, type Nuxt, type NuxtAnalyzeMeta, type NuxtApp, type NuxtAppConfig, type NuxtBuilder, type NuxtCompatibility, type NuxtCompatibilityIssue, type NuxtCompatibilityIssues, type NuxtConfig, type NuxtConfigLayer, _default as NuxtConfigSchema, type NuxtDebugContext, type NuxtDebugModuleMutationRecord, type NuxtDebugOptions, type NuxtHookName, type NuxtHooks, type NuxtLayout, type NuxtMiddleware, type NuxtModule, type NuxtOptions, type NuxtPage, type NuxtPlugin, type NuxtPluginTemplate, type NuxtServerTemplate, type NuxtTemplate, type NuxtTypeTemplate, type PublicRuntimeConfig, type ResolvedModuleOptions, type ResolvedNuxtTemplate, type RouterConfig, type RouterConfigSerializable, type RouterOptions, type RuntimeConfig, type RuntimeValue, type ScanDir, type SchemaDefinition, type TSReference, type UpperSnakeCase, type ViteConfig, type ViteOptions, type VueTSConfig, type WatchEvent };

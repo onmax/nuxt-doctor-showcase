@@ -1,3 +1,4 @@
+import type { DoctorCheckContext } from '@nuxt/schema'
 import { defineNuxtModule } from '@nuxt/kit'
 
 export default defineNuxtModule({
@@ -9,8 +10,7 @@ export default defineNuxtModule({
     trackingId: undefined as string | undefined
   },
   setup(options, nuxt) {
-    // Doctor hook - check for missing config
-    nuxt.hook('doctor:check', (ctx: any) => {
+    nuxt.hook('doctor:check', (ctx: DoctorCheckContext) => {
       if (!options.trackingId) {
         ctx.addCheck({
           id: 'ANALYTICS_MISSING_ID',
